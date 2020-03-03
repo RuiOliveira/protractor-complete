@@ -1,0 +1,22 @@
+{
+  "name": "protractor-course-code",
+  "version": "1.0.0",
+  "description": "protractor from skratch",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RuiOliveira/protractor-complete.git"
+  },
+  "keywords": [
+    "protractor-complete"
+  ],
+  "author": "Rui Oliveira",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RuiOliveira/protractor-complete/issues"
+  },
+  "homepage": "https://github.com/RuiOliveira/protractor-complete#readme"
+}
