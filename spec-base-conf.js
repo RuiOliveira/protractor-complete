@@ -1,35 +1,18 @@
 /*eslint-disable no-console */
+var Jasmine2HtmlReporter  = require('protractor-jasmine2-html-reporter');
 
-var HtmlScreenshotReporter = require('protractor-jasmine2-screenshot-reporter');
-var _ = require('lodash');
-
-var reporter = new HtmlScreenshotReporter({
-    dest: 'screenshots',
-    filename: 'spec-report.html',
-    captureOnlyFailedSpecs: true,
-    showSummary: false,
-    showConfiguration: false,
-    ignoreSkippedSpecs: true,
-    cleanDestination: true,
-    reportTitle: null
-});
+ var path = require('path');
 
 exports.config = {
-    capabilities: {
-        browserName: 'chrome',
-        shardTestFiles: true,
-        maxInstances: 5
-    },
-
     getPageTimeout: 30000,
     allScriptsTimeout: 30000,
-
     framework: 'jasmine2',
     jasmineNodeOpts: {
         isVerbose: true,
         showColors: true,
         includeStackTrace: true,
-        defaultTimeoutInterval: 60000
+        defaultTimeoutInterval: 60000,
+        showColors: true
     },
     enableErrorLogs: true,
     enableDelay: false,
@@ -38,12 +21,13 @@ exports.config = {
     // setup. This will only run once, and before onPrepare.
     // You can specify a file containing code to run by setting beforeLaunch to
     // the filename string.
+    /*
     beforeLaunch: () => {
         return new Promise(resolve => {
             reporter.beforeLaunch(resolve);
         });
     },
-
+    */
     // A callback function called once protractor is ready and available, and
     // before the specs are executed.
     // If multiple capabilities are being run, this will run once per
@@ -56,74 +40,42 @@ exports.config = {
     // Protractor cannot guarantee order of execution and may start the tests
     // before preparation finishes.
     onPrepare: () => {
-        require('babel-register');
-        jasmine.getEnv().addReporter(reporter);
-        var enableErrorLogs = true;
+
+        // Add a screenshot reporter and store screenshots to `/tmp/screenshots`:
+        jasmine.getEnv().addReporter(
+            new Jasmine2HtmlReporter({
+                savePath: '../reports',
+                screenshotsFolder: 'images',
+                takeScreenshots: true,
+                takeScreenshotsOnlyOnFailures: false,
+                fixedScreenshotName: true,
+                fileNamePrefix: 'protractor',
+                //This option allow you to create a single file for each reporter.
+                consolidate: false,
+                consolidateAll: false,
+                //
+                cleanDestination: true,
+                fileName: 'html-report',
+                fileNameSeparator: '_',
+                fileNamePrefix: '',
+                fileNameSuffix: '',
+                fileNameDateSuffix: true
+            })
+          );
+
         var enableDelay = true;
 
         browser.getProcessedConfig().then(data => {
-            enableErrorLogs = data.enableErrorLogs;
             enableDelay = data.enableDelay;
         });
-
-        // Disables animations for tests
-        const disableNgAnimate = () => {
-            angular.module('disableNgAnimate', []).run([
-                '$animate',
-                $animate => {
-                    $animate.enabled(false);
-                }
-            ]);
-        };
-
-        const disableCssAnimate = () => {
-            angular.module('disableCssAnimate', []).run(() => {
-                const style = document.createElement('style');
-                style.type = 'text/css';
-                style.innerHTML =
-                    '* {' +
-                    '-webkit-transition: none !important;' +
-                    '-moz-transition: none !important' +
-                    '-o-transition: none !important' +
-                    '-ms-transition: none !important' +
-                    'transition: none !important' +
-                    '}';
-                document.getElementsByTagName('head')[0].appendChild(style);
-            });
-        };
-
-        browser.addMockModule('disableNgAnimate', disableNgAnimate);
-        browser.addMockModule('disableCssAnimate', disableCssAnimate);
 
         return browser.driver.getSession().then(() => {
             browser.driver
                 .manage()
                 .window()
-                .setSize(1280, 1024);
-
-            afterEach(() => {
-                // Close any confirm dialog present
-                browser
-                    .switchTo()
-                    .alert()
-                    .then(alert => {
-                        alert.accept();
-                    })
-                    .catch(() => {});
-
-                // Log every error thrown in browser
-                if (enableErrorLogs) {
-                    browser
-                        .manage()
-                        .logs()
-                        .get('browser')
-                        .then(browserLog => {
-                            _.forEach(browserLog, error => {
-                                console.log(error.level.name + ':' + error.message);
-                            });
-                        });
-                }
-            });
+                .maximize();
+                //.setSize(1280, 1024);
+                
 
             beforeEach(() => {
                 //Enable delay
@@ -144,15 +96,24 @@ exports.config = {
             });
         });
     },
-
+/*     specs: ['./tests/specs/*element-basics-dataprovider-spec.js'],
+    suites: {
+        smoke: ['./tests/specs/chainLocators-spec.js',
+        './tests/specs/dropdown.spec.js'
+        ],
+        sanity:[],
+        regression: ['./tests/specs/element-basics-dataprovider-spec.js']
+    }    */
     // A callback function called once all tests have finished running and
     // the WebDriver instance has been shut down. It is passed the exit code
     // (0 if the tests passed). afterLaunch must return a promise if you want
     // asynchronous code to be executed before the program exits.
     // This is called only once before the program exits (after onCleanUp).
+    /*
     afterLaunch: exitCode => {
         return new Promise(resolve => {
             reporter.afterLaunch(resolve.bind(this, exitCode));
         });
     }
+    */
 };

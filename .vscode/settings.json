@@ -1,0 +1,165 @@
+{
+    // Terminal
+
+  // Customizes what kind of terminal to launch.
+  //  - integrated: Use VS Code's integrated terminal.
+  //  - external: Use the configured external terminal.
+  "terminal.explorerKind": "integrated",
+
+  // External Terminal
+
+  // Customizes which terminal to run on Linux.
+  "terminal.external.linuxExec": "xterm",
+
+  // Customizes which terminal application to run on macOS.
+  "terminal.external.osxExec": "Terminal.app",
+
+  // Customizes which terminal to run on Windows.
+  "terminal.external.windowsExec": "C:\\Program Files\\cmder\\Cmder.exe",
+
+  // Integrated Terminal
+
+  // Whether or not to allow chord keybindings in the terminal. Note that when this is true and the keystroke results in a chord it will bypass `terminal.integrated.commandsToSkipShell`, setting this to false is particularly useful when you want ctrl+k to go to your shell (not VS Code).
+  "terminal.integrated.allowChords": true,
+
+  // A path that when set will override `terminal.integrated.shell.linux` and ignore `shellArgs` values for automation-related terminal usage like tasks and debug.
+  "terminal.integrated.automationShell.linux": null,
+
+  // A path that when set will override `terminal.integrated.shell.osx` and ignore `shellArgs` values for automation-related terminal usage like tasks and debug.
+  "terminal.integrated.automationShell.osx": null,
+
+  // A path that when set will override `terminal.integrated.shell.windows` and ignore `shellArgs` values for automation-related terminal usage like tasks and debug.
+  "terminal.integrated.automationShell.windows": null,
+
+  // A set of command IDs whose keybindings will not be sent to the shell and instead always be handled by Code. This allows the use of keybindings that would normally be consumed by the shell to act the same as when the terminal is not focused, for example ctrl+p to launch Quick Open.
+  "terminal.integrated.commandsToSkipShell": [],
+
+  // Controls whether to confirm on exit if there are active terminal sessions.
+  "terminal.integrated.confirmOnExit": false,
+
+  // Controls whether text selected in the terminal will be copied to the clipboard.
+  "terminal.integrated.copyOnSelection": false,
+
+  // Controls whether the terminal cursor blinks.
+  "terminal.integrated.cursorBlinking": false,
+
+  // Controls the style of terminal cursor.
+  "terminal.integrated.cursorStyle": "block",
+
+  // Controls the width of the cursor when `terminal.integrated.cursorStyle` is set to `line`.
+  "terminal.integrated.cursorWidth": 1,
+
+  // An explicit start path where the terminal will be launched, this is used as the current working directory (cwd) for the shell process. This may be particularly useful in workspace settings if the root directory is not a convenient cwd.
+  "terminal.integrated.cwd": "",
+
+  // Controls whether to detect and set the `$LANG` environment variable to a UTF-8 compliant option since VS Code's terminal only supports UTF-8 encoded data coming from the shell.
+  //  - auto: Set the `$LANG` environment variable if the existing variable does not exist or it does not end in `'.UTF-8'`.
+  //  - off: Do not set the `$LANG` environment variable.
+  //  - on: Always set the `$LANG` environment variable.
+  "terminal.integrated.detectLocale": "auto",
+
+  // Controls whether bold text in the terminal will always use the "bright" ANSI color variant.
+  "terminal.integrated.drawBoldTextInBrightColors": true,
+
+  // Controls whether the terminal bell is enabled.
+  "terminal.integrated.enableBell": false,
+
+  // Whether to enable file links in the terminal. Links can be slow when working on a network drive in particular because each file link is verified against the file system.
+  "terminal.integrated.enableFileLinks": true,
+
+  // Object with environment variables that will be added to the VS Code process to be used by the terminal on Linux. Set to `null` to delete the environment variable.
+  "terminal.integrated.env.linux": {},
+
+  // Object with environment variables that will be added to the VS Code process to be used by the terminal on macOS. Set to `null` to delete the environment variable.
+  "terminal.integrated.env.osx": {},
+
+  // Object with environment variables that will be added to the VS Code process to be used by the terminal on Windows. Set to `null` to delete the environment variable.
+  "terminal.integrated.env.windows": {},
+
+  // Scrolling speed multiplier when pressing `Alt`.
+  "terminal.integrated.fastScrollSensitivity": 5,
+
+  // Controls the font family of the terminal, this defaults to `editor.fontFamily`'s value.
+  "terminal.integrated.fontFamily": "",
+
+  // Controls the font size in pixels of the terminal.
+  "terminal.integrated.fontSize": 14,
+
+  // The font weight to use within the terminal for non-bold text.
+  "terminal.integrated.fontWeight": "normal",
+
+  // The font weight to use within the terminal for bold text.
+  "terminal.integrated.fontWeightBold": "bold",
+
+  // Whether new shells should inherit their environment from VS Code. This is not supported on Windows.
+  "terminal.integrated.inheritEnv": true,
+
+  // Controls the letter spacing of the terminal, this is an integer value which represents the amount of additional pixels to add between characters.
+  "terminal.integrated.letterSpacing": 0,
+
+  // Controls the line height of the terminal, this number is multiplied by the terminal font size to get the actual line-height in pixels.
+  "terminal.integrated.lineHeight": 1,
+
+  // Controls whether to force selection when using Option+click on macOS. This will force a regular (line) selection and disallow the use of column selection mode. This enables copying and pasting using the regular terminal selection, for example, when mouse mode is enabled in tmux.
+  "terminal.integrated.macOptionClickForcesSelection": false,
+
+  // Controls whether to treat the option key as the meta key in the terminal on macOS.
+  "terminal.integrated.macOptionIsMeta": false,
+
+  // When set the foreground color of each cell will change to try meet the contrast ratio specified. Example values:
+  //
+  // - 1: The default, do nothing.
+  // - 4.5: WCAG AA compliance (minimum).
+  // - 7: WCAG AAA compliance (enhanced).
+  // - 21: White on black or black on white.
+  "terminal.integrated.minimumContrastRatio": 1,
+
+  // A multiplier to be used on the `deltaY` of mouse wheel scroll events.
+  "terminal.integrated.mouseWheelScrollSensitivity": 1,
+
+  // Controls how the terminal is rendered.
+  //  - auto: Let VS Code guess which renderer to use.
+  //  - canvas: Use the standard GPU/canvas-based renderer.
+  //  - dom: Use the fallback DOM-based renderer.
+  "terminal.integrated.rendererType": "auto",
+
+  // Controls how terminal reacts to right click.
+  //  - default: Show the context menu.
+  //  - copyPaste: Copy when there is a selection, otherwise paste.
+  //  - paste: Paste on right click.
+  //  - selectWord: Select the word under the cursor and show the context menu.
+  "terminal.integrated.rightClickBehavior": "copyPaste",
+
+  // Controls the maximum amount of lines the terminal keeps in its buffer.
+  "terminal.integrated.scrollback": 1000,
+
+  // The path of the shell that the terminal uses on Linux (default: /bin/bash).
+  "terminal.integrated.shell.linux": null,
+
+  // The path of the shell that the terminal uses on macOS (default: /bin/bash).
+  "terminal.integrated.shell.osx": null,
+
+  // The path of the shell that the terminal uses on Windows (default: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe).
+  "terminal.integrated.shell.windows": null,
+
+  // The command line arguments to use when on the Linux terminal.
+  "terminal.integrated.shellArgs.linux": [],
+
+  // The command line arguments to use when on the macOS terminal.
+  "terminal.integrated.shellArgs.osx": ["-l"],
+
+  // The command line arguments to use when on the Windows terminal.
+  "terminal.integrated.shellArgs.windows": [],
+
+  // Controls whether to show the alert "The terminal process terminated with exit code" when exit code is non-zero.
+  "terminal.integrated.showExitAlert": true,
+
+  // Controls the working directory a split terminal starts with.
+  //  - workspaceRoot: A new split terminal will use the workspace root as the working directory. In a multi-root workspace a choice for which root folder to use is offered.
+  //  - initial: A new split terminal will use the working directory that the parent terminal started with.
+  //  - inherited: On macOS and Linux, a new split terminal will use the working directory of the parent terminal. On Windows, this behaves the same as initial.
+  "terminal.integrated.splitCwd": "inherited",
+
+  // Whether to use ConPTY for Windows terminal process communication (requires Windows 10 build number 18309+). Winpty will be used if this is false.
+  "terminal.integrated.windowsEnableConpty": true,
+}
